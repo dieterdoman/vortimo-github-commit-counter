@@ -1,18 +1,19 @@
 import React from 'react';
+import styles from './Table.module.css';
 
 const Table = (props) => {
     return (
-        <div>
-            <div>
-                <div>Username</div>
-                <div>Count</div>
+        <div className={styles.Table}>
+            <div className={styles.TableHeading}>
+                <div className={styles.TableCell}>Username</div>
+                <div className={styles.TableCell}>Count</div>
             </div>
             {
                 Object.keys(props.data).map((username) => {
                     return (
-                        <div key={username}>
-                            <div>{username}</div>
-                            <div>{props.data[username]}</div>
+                        <div className={styles.TableRow} key={username}>
+                            <div className={styles.TableCell}>{username}</div>
+                            <div className={styles.TableCell}>{props.data[username]}</div>
                         </div>
                     );
                 })

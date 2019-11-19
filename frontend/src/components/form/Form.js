@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import TimespanSelect from '../timespanSelect/TimespanSelect';
+import styles from './Form.module.css';
 
 const Form = (props) => {
     const [url, setUrl] = useState("https://github.com/facebook/react");
@@ -15,15 +16,22 @@ const Form = (props) => {
     };
 
     return (
-        <form onSubmit={onSubmit}>
-            <label>
-                Repo URL:
-                <input type="text" value={url} onChange={(event) => setUrl(event.target.value)}/>
-            </label>
-            <label>Timespan</label>
-            <TimespanSelect value={timespan} onChange={onChangeTimespan}/>
-            <input type="submit" value="Update stats"/>
-        </form>
+        <div className={styles.Container}>
+            <form onSubmit={onSubmit}>
+                <div className={styles.Input}>
+                    <label className={styles.Label}>
+                        Repo URL:
+                    </label>
+                    <input className={styles.InputElement} type="text" value={url} onChange={(event) => setUrl(event.target.value)}/>
+                </div>
+                <div className={styles.Input}>
+                    <label className={styles.Label}>Timespan</label>
+                    <TimespanSelect value={timespan} onChange={onChangeTimespan}/>
+                </div>
+                <input className={styles.Button} type="submit" value="Update stats"/>
+            </form>
+            {props.children}
+        </div>
     );
 };
 

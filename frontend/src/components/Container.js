@@ -17,10 +17,11 @@ const Container = (props) => {
 
     return (
         <Fragment>
-            <Form onSubmit={onSubmit}/>
-            { commitCount &&
-                <Table data={commitCount}/>
-            }
+            <Form onSubmit={onSubmit}>
+                { commitCount &&
+                    <Table data={commitCount}/>
+                }
+            </Form>
         </Fragment>
     );
 };
