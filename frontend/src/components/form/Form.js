@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TimespanSelect from '../timespanSelect/TimespanSelect';
 
 const Form = (props) => {
-    const [url, setUrl] = useState("");
+    const [url, setUrl] = useState("https://github.com/facebook/react");
     const [timespan, setTimeSpan] = useState("hours");
 
     const onChangeTimespan = (selectedOption) => {

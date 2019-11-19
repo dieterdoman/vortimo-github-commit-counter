@@ -1,12 +1,15 @@
 import express from 'express';
 import {extractParamsFromGithubUrl, getCommitMessages, mapCommitMessagesToMapCount, extractTimesFromTimespan} from './Github';
 import axios from 'axios';
+import cors from 'cors';
 
 const PORT = 5000;
 
 const app = express();
+app.use(cors());
+
 app.listen(PORT, () => {
-    console.log("Server running on port 3000");
+    console.log(`Server running on port ${PORT}`);
 });
 
 app.get("/commitcounts", (req, res) => {
