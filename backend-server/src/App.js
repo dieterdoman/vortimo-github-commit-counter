@@ -2,7 +2,7 @@ import express from 'express';
 import {extractParamsFromGithubUrl, getCommitMessages, mapCommitMessagesToMapCount, extractTimesFromTimespan} from './Github';
 import axios from 'axios';
 
-const PORT = 3000;
+const PORT = 5000;
 
 const app = express();
 app.listen(PORT, () => {
