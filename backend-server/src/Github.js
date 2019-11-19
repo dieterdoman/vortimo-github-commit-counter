@@ -1,12 +1,10 @@
-import axios from 'axios';
-
 const YEAR = 365;
 const DAYS = 7;
 const HOURS = 24;
 const SECONDS = 3600;
 const MILLI_SECONDS = 1000;
 
-export const getCommitMessages = (params, timespan) => {
+export const getCommitMessages = (axios, params, timespan) => {
     return axios.get(`https://api.github.com/repos/${params.owner}/${params.repo}/commits?since=${timespan.since}&until=${timespan.until}`);
 };
 
@@ -19,26 +17,25 @@ export const extractParamsFromGithubUrl = (gitHubUrl) => {
     }
 };
 
-export const extractTimesFromTimespan = (timespan) => {
-    const until = new Date();
+export const extractTimesFromTimespan = (timespan, nowDate) => {
     switch (timespan) {
         case 'hours':
-            const sinceHours = new Date(until - HOURS * SECONDS * MILLI_SECONDS);
+            const sinceHours = new Date(nowDate - HOURS * SECONDS * MILLI_SECONDS);
             return {
                 since: sinceHours.toISOString(),
-                until: until.toISOString(),
+                until: nowDate.toISOString(),
             };
         case 'week':
-            const sinceWeek = new Date(until - DAYS * HOURS * SECONDS * MILLI_SECONDS);
+            const sinceWeek = new Date(nowDate - DAYS * HOURS * SECONDS * MILLI_SECONDS);
             return {
                 since: sinceWeek.toISOString(),
-                until: until.toISOString(),
+                until: nowDate.toISOString(),
             };
         case 'year':
-            const sinceYear = new Date(until - YEAR * DAYS * HOURS * SECONDS * MILLI_SECONDS);
+            const sinceYear = new Date(nowDate - YEAR * DAYS * HOURS * SECONDS * MILLI_SECONDS);
             return {
                 since: sinceYear.toISOString(),
-                until: until.toISOString(),
+                until: nowDate.toISOString(),
             };
     }
 };
